@@ -10,7 +10,7 @@ bot.setMyCommands([
         description: 'Botni ishga tushurish'
     },
     {
-        command:'/Courses',
+        command:'/courses',
         description:"Bepul video darsliklarni ko'rish"
     }
 ])
@@ -27,5 +27,11 @@ bot.on('message', async msg => {
             `Assalomu aleykum hurmatli ${msg.from.first_name} sizni o'quv kursimizda ko'rib turganimizdan juda hursandmiz 😊 `
         )
      }
+    if(text === '/courses'){
+        return bot.sendMessage(
+            chatId,
+            "Hello"
+        )
+    }
    
   });
