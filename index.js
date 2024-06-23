@@ -16,15 +16,14 @@ bot.setMyCommands([
 ])
 
 bot.on('message', async msg => {
-    console.log(msg);
-
     const text = msg.text;
     const chatId = msg.chat.id;
+    const channel = 'https://t.me/Olimov_blogs'
 
     if(text === "/start"){
         return bot.sendMessage(
             chatId,
-            `Assalomu aleykum hurmatli ${msg.from.first_name} sizni o'quv kursimizda ko'rib turganimizdan juda hursandmiz 😊 `
+            `Assalomu aleykum hurmatli ${msg.from.first_name} sizni o'quv kursimizda ko'rib turganimizdan juda hursandmiz😊botdan to'liq foydalanish uchun ${channel} obuna bo'ling `
         )
      }
     if(text === '/courses'){
