@@ -1,36 +1,24 @@
-const TelegramBot = require('node-telegram-bot-api');
+const TelegramBot = require("node-telegram-bot-api");
 
-const token = '7433548125:AAHwKPEMthL6NQdvg55hdV23Qj47mMwjAnI'
+// Bot tokeni
+const token = "7433548125:AAHwKPEMthL6NQdvg55hdV23Qj47mMwjAnI";
+const bot = new TelegramBot(token, { polling: true });
 
-const bot = new TelegramBot(token, {polling: true});
 
-bot.setMyCommands([
-    {
-        command: '/start',
-        description: 'Botni ishga tushurish'
-    },
-    {
-        command:'/courses',
-        description:"Bepul video darsliklarni ko'rish"
-    }
-])
+const adminId = '5248032955';
+bot.on("message", async (msg) => {
+  const text = msg.text;
+  const chatId = msg.chat.id
+  // Foydalanuvchi tomonidan yuborilgan boshqa barcha xabarlar
+  if (text) {
+    bot.sendMessage(adminId, `Yangi anonim xabar:\n\n${text}`);
+    bot.sendMessage(chatId, "Hurmatli  xabaringiz bot yaratuvchisiga yuborildi.");
+  }
+});
 
-bot.on('message', async msg => {
-    const text = msg.text;
-    const chatId = msg.chat.id;
-    const channel = 'https://t.me/Olimov_blogs'
 
-    if(text === "/start"){
-        return bot.sendMessage(
-            chatId,
-            `Assalomu aleykum hurmatli ${msg.from.first_name} sizni o'quv kursimizda ko'rib turganimizdan juda hursandmiz😊botdan to'liq foydalanish uchun ${channel} obuna bo'ling `
-        )
-     }
-    if(text === '/courses'){
-        return bot.sendMessage(
-            chatId,
-            "Hello"
-        )
-    }
-   
-  });
+bot.on('callback_query', msg => {
+    console.log(msg);
+    const data = msg.data;
+    const chatId = msg.message.chat.id;
+});
